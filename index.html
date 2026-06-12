@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Mini Andon Portátil</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>MINI ANDON PORTÁTIL</h1>
+
+<p id="ultimaAtualizacao">
+Última atualização
+</p>
+
+</header>
+
+<div class="status">
+
+<h2>Status Atual</h2>
+
+<div id="statusBox">
+
+🟢 VERDE
+
+</div>
+
+</div>
+
+<section class="cards">
+
+<div class="card">
+
+<h3>Tempo do Alerta</h3>
+
+<h1 id="tempo">0 ms</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Disponibilidade</h3>
+
+<h1 id="disp">100%</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Criticidade</h3>
+
+<h1 id="criticidade">0</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Total Eventos</h3>
+
+<h1 id="total">0</h1>
+
+</div>
+
+</section>
+
+<section class="contadores">
+
+<div class="contador verde">
+
+<h2>🟢 Verde</h2>
+
+<h1 id="verde">0</h1>
+
+</div>
+
+<div class="contador amarelo">
+
+<h2>🟡 Amarelo</h2>
+
+<h1 id="amarelo">0</h1>
+
+</div>
+
+<div class="contador vermelho">
+
+<h2>🔴 Vermelho</h2>
+
+<h1 id="vermelho">0</h1>
+
+</div>
+
+</section>
+
+<section class="grafico">
+
+<canvas id="grafico"></canvas>
+
+</section>
+
+<section class="historico">
+
+<h2>Últimos Eventos</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Horário</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tabelaEventos">
+
+</tbody>
+
+</table>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
