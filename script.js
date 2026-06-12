@@ -1,6 +1,6 @@
 
 const URL =
-"https://script.google.com/macros/s/AKfycbxggNUFdgfjIAI-J-EGJIFX5jmREb805FJp4jp_V8A_xYYXQodcTnRch3EfFwExvXEtjw/exec";
+"https://script.google.com/macros/s/AKfycbz8i0VDpbg1jh1KWadDUHt4pL0e--ciewR12AztFyBI02UQMpbGlpowImP_NEiWvujh/exec";
 
 let chart;
 
