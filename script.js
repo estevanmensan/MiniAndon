@@ -1,6 +1,5 @@
 
-const URL =
-"https://script.google.com/macros/s/AKfycbz8i0VDpbg1jh1KWadDUHt4pL0e--ciewR12AztFyBI02UQMpbGlpowImP_NEiWvujh/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbysYsjVy69agHkz_9OARPEQN65OxE3r8ZnlvtOVIMOt11cA2ZgunOD-mZE1qY7X8Mqp/exec";
 
 let chart;
 
@@ -8,68 +7,73 @@ async function atualizar(){
 
 try{
 
-const resposta = await fetch(URL);
+    const resposta = await fetch(API_URL + "?modo=dashboard");
 
-const dados = await resposta.json();
+    console.log(resposta);
 
-document.getElementById("tempo").innerHTML =
-dados.tempo+" ms";
+    const dados = await resposta.json();
+    console.log(dados);
 
-document.getElementById("disp").innerHTML =
-dados.disponibilidade+" %";
+    document.getElementById("tempo").innerHTML =
+    dados.tempo+" ms";
 
-document.getElementById("criticidade").innerHTML =
-dados.criticidade;
+    document.getElementById("disp").innerHTML =
+    dados.disponibilidade+" %";
 
-document.getElementById("total").innerHTML =
-dados.total;
+    document.getElementById("criticidade").innerHTML =
+    dados.criticidade;
 
-document.getElementById("verde").innerHTML =
-dados.verde;
+    document.getElementById("total").innerHTML =
+    dados.total;
 
-document.getElementById("amarelo").innerHTML =
-dados.amarelo;
+    document.getElementById("verde").innerHTML =
+    dados.verde;
 
-document.getElementById("vermelho").innerHTML =
-dados.vermelho;
+    document.getElementById("amarelo").innerHTML =
+    dados.amarelo;
 
-document.getElementById("ultimaAtualizacao").innerHTML =
-"Última atualização: "+new Date().toLocaleString();
+    document.getElementById("vermelho").innerHTML =
+    dados.vermelho;
 
-let status=document.getElementById("statusBox");
+    document.getElementById("ultimaAtualizacao").innerHTML =
+    "Última atualização: "+new Date().toLocaleString();
 
-status.innerHTML=dados.status;
+    let status=document.getElementById("statusBox");
 
-if(dados.status=="VERDE"){
+    status.innerHTML=dados.status;
 
-status.style.background="#16a34a";
+    if(dados.status=="VERDE"){
 
-}
+    status.style.background="#16a34a";
 
-else if(dados.status=="AMARELO"){
+    }
 
-status.style.background="#eab308";
+    else if(dados.status=="AMARELO"){
 
-status.style.color="black";
+    status.style.background="#eab308";
 
-}
+    status.style.color="black";
 
-else{
+    }
 
-status.style.background="#dc2626";
+    else{
 
-status.style.color="white";
+    status.style.background="#dc2626";
 
-}
+    status.style.color="white";
 
-atualizarGrafico(dados);
+    }
 
-atualizarTabela(dados);
+    atualizarGrafico(dados);
+
+    atualizarTabela(dados);
 
 }
 catch(e){
 
-console.log(e);
+    console.error(e);
+
+    alert(e);
 
 }
 
@@ -77,39 +81,39 @@ console.log(e);
 
 function atualizarGrafico(d){
 
-if(chart){
+    if(chart){
 
-chart.destroy();
+    chart.destroy();
 
-}
+    }
 
-const ctx=document.getElementById("grafico");
+    const ctx=document.getElementById("grafico");
 
-chart=new Chart(ctx,{
+    chart=new Chart(ctx,{
 
-type:"bar",
+    type:"bar",
 
-data:{
+    data:{
 
-labels:["Verde","Amarelo","Vermelho"],
+    labels:["Verde","Amarelo","Vermelho"],
 
-datasets:[{
+    datasets:[{
 
-label:"Ocorrências",
+    label:"Ocorrências",
 
-data:[
+    data:[
 
-d.verde,
+    d.verde,
 
-d.amarelo,
+    d.amarelo,
 
-d.vermelho
+    d.vermelho
 
-]
+    ]
 
-}]
+    }]
 
-}
+    }
 
 });
 
@@ -121,7 +125,7 @@ let tabela=document.getElementById("tabelaEventos");
 
 tabela.innerHTML="";
 
-for(let item of d.eventos){
+for(let item of d.historico){{
 
 tabela.innerHTML+=`
 
@@ -138,7 +142,7 @@ tabela.innerHTML+=`
 }
 
 }
-
+}
 setInterval(atualizar,5000);
 
 atualizar();
